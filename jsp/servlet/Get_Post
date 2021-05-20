@@ -1,0 +1,11 @@
+
+// doGet doPost 함수 사용하지 않을 경우
+protected void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    if (req.getMethod().equals("GET") {
+        // 입력을 받은 폼이 GET 형식일 경우 코드를 실행한다.
+    }
+    else if (req.getMethod().equals("POST") {
+        // 입력을 받은 폼이 POST 형식일 경우 코드를 실행한다.
+    }
+}
+

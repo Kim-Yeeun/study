@@ -1,0 +1,148 @@
+@WebServlet("/calculator")
+public class Calculator extends HttpServlet {
+	
+  // GET 요청을 받은 경우 실행되는 doGet 함수 
+  @Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		// 쿠키 생성 
+    Cookie[] cookies = req.getCookies();
+		
+    // 계산식을 0으로 설정 
+		String exp = "0";
+    
+    // 쿠키가 비어있지 않은 경우 쿠키 정보를 가져온다.
+		if (cookies != null) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals("exp")) {
+					exp = c.getValue();
+					break;
+				}			
+			}
+		}
+		
+    // 출력할 때 인코딩 설정 (입력받을 때 인코딩 설정은 CharacterEncodingFilter.java 에서 설정했다.)
+		res.setCharacterEncoding("utf-8");
+		res.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = res.getWriter(); 
+		
+		out.write("<!DOCTYPE html>");
+		out.write("<html>");
+		out.write("<head>");
+		out.write("<meta charset=\"UTF-8\">");
+		out.write("<title>계산기</title>");
+		out.write("<style>");
+		out.write("input{");
+		out.write("width: 50px;");
+		out.write("height: 50px;");
+		out.write("}");
+		out.write(".output{");
+		out.write("height: 50px;");
+		out.write("background: #e9e9e9;");
+		out.write("text-align: right;");
+		out.write("padding-right: 5px;");
+		out.write("font-size: 23px;");
+		out.write("font-weight: bold;");
+		out.write("}");
+		out.write("</style>");
+		out.write("</head>");
+		out.write("<body>");
+		out.write("<h3>계산할 값을 입력하세요.</h3>");
+		out.write("<form method=\"post\">");
+		out.write("<table>");
+		out.write("<tr>");
+		out.printf("<td class=\"output\" colspan=\"4\">%s</td>", exp);
+		out.write("</tr>");
+		out.write("<tr>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"CE\"></td>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"C\"></td>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"<-\"></td>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"/\"></td>");
+		out.write("</tr>");
+		out.write("<tr>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"7\"></td>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"8\"></td>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"9\"></td>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"*\"></td>");
+		out.write("</tr>");
+		out.write("<tr>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"4\"></td>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"5\"></td>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"6\"></td>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"-\"></td>");
+		out.write("</tr>");
+		out.write("<tr>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"1\"></td>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"2\"></td>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"3\"></td>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"+\"></td>");
+		out.write("</tr>");
+		out.write("<tr>");
+		out.write("<td></td>");
+		out.write("<td><input type=\"submit\" name=\"value\" value=\"0\"></td>");
+		out.write("<td><input type=\"submit\" name=\"dot\" value=\".\"></td>");
+		out.write("<td><input type=\"submit\" name=\"operator\" value=\"=\"></td>");
+		out.write("</tr>");
+		out.write("</table>");
+		out.write("</form>");
+		out.write("</body>");
+		out.write("</html>");
+	}
+	
+  // POST 요청을 받은 경우 실행되는 함수 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		// 쿠키 생성
+    Cookie[] cookies = req.getCookies();
+		
+    // 입력받은 변수들을 받아와 변수에 저장한다.
+		String value = req.getParameter("value");
+		String operator = req.getParameter("operator");
+		String dot = req.getParameter("dot");
+		
+    // 계산식을 빈문자열로 초기화한 후 쿠키가 비어있지 않은 경우 쿠키 정보를 가져온다.
+		String exp = "";
+		if (cookies != null) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals("exp")) {
+					exp = c.getValue();
+					break;
+				}			
+			}
+		}
+		
+    // 기호가 비어있지 않고 "=" 일 경우 계산결과 출력
+		if (operator != null && operator.equals("=")) {
+			ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+			try {
+				exp = String.valueOf(engine.eval(exp));
+			} catch (ScriptException e) {
+				e.printStackTrace();
+			}
+		} 
+    // 기호가 "C" 일 경우 빈문자열로 계산식을 초기화한다. 쿠키 삭제는 아래에서 한다.
+    else if (operator != null && operator.equals("C")) {
+			exp = "";
+		}
+    // 계산식에 누른 정보를 넣어서 누적한다. 빈문자열일 경우 "" 삽입한다.
+    else {
+			exp += (value == null) ? "" : value;
+			exp += (operator == null) ? "" : operator;
+			exp += (dot == null) ? "" : dot;
+		}
+		
+    // 계산식의 쿠키 정보를 가져와서 기호가 "C" 인 경우 쿠키를 즉시 삭제한다.
+		Cookie expCookie = new Cookie("exp", exp);
+		if (operator != null && operator.equals("C")) {
+			expCookie.setMaxAge(0);
+		}	
+		
+    // 쿠키를 calculator 경로에서만 허용한다.
+		expCookie.setPath("/calculator");
+    // 계산식을 쿠키 정보에 저장한다.
+		res.addCookie(expCookie);
+    // calculator 서블릿으로 전달한다. 본인이 본인에게 전달하므로 GET 요청이라고 볼 수 있다.
+		res.sendRedirect("calculator");
+	}
+}
+

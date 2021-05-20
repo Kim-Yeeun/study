@@ -1,0 +1,15 @@
+//includeparam.jsp
+
+  <% int i = 12; %>
+	<% int n = 365; %>
+	1년은 <%= i %>달 입니다.
+	<jsp:include page="paramsub.jsp"> //paramsub.jsp 파일로 이동한다.
+		<jsp:param name="weeks" value="52" /> //파라미터값을 같이 전달한다.
+	</jsp:include>
+	1년은 <%= n %>일 입니다.
+  
+//paramsub.jsp
+
+  <hr> <font color=blue>
+	1년은 <%= request.getParameter("weeks") %>주 입니다.
+	</font> <hr>

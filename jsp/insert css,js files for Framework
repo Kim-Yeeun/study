@@ -1,0 +1,9 @@
+// WebContent 파일 아래에 css, js 파일 생성
+// css 파일 아래에 bootstrap.min.css, custom.css 파일 생성
+// js 파일 아래에 bootstrap.min.js, jquery.min.js, popper.js 파일 생성
+
+// custom.css 파일에는 https://fonts.google.com/earlyaccess 에서 폰트 찾아서 import 한다.
+
+// https://getbootstrap.com/docs/4.0/getting-started/download/ 에서 bootstrap.min.css, bootstrap.min.js 파일 카피한다.
+// https://jquery.com/download/ 에서 jquery.min.js 파일 카피한다.
+// https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.js 에서 popper.js 파일 카피한다.

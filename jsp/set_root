@@ -1,0 +1,4 @@
+// 프로젝트 우클릭 후 [Properties] 들어간다.
+// 아래의 [Web Project Settings] 클릭후 Context root를 '/'로 설정하고 적용한다.
+
+// localhost:8080/[파일명] 으로 접속한다.

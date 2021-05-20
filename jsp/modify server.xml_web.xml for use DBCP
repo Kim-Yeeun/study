@@ -1,0 +1,18 @@
+// server.xml 에 이용할 커넥션 풀의 이용 정보 리소스를 추가
+<Context docBase="retest" path="/retest" reloadable="true" source="org.eclipse.jst.jee.server:retest">
+      <Resource name="jdbc/mysql" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000"
+      	username="root" password="kimyeeun" driverClassName="con.mysql.jdbc.Driver"
+      	url="jdbc:mysql://localhost:3306/univdb?autoReconnect=true"/>
+</Context>
+
+
+// web.xml 에 DBCP 리소스 참조 방법을 추가
+<web-app ~>
+  <description> MySQL Text App </description>
+  <resource-ref>
+		<description> DB Connection </description>
+		<res-ref-name> jdbc/mysql </res-ref-name>
+		<res-type> javax.sql.DataSource </res-type>
+		<res-auth> Container </res-auth>
+  </resource-ref>
+</web-app>

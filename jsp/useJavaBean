@@ -1,0 +1,16 @@
+
+// jsp 파일
+  // javabeans를 생성
+  <jsp:useBean id="name" class="javabean.NameBean" scope="page" />
+
+  // javabeans에 정보를 저장
+  <jsp:setProperty name="name" property="p1" />
+  ,,,
+  <jsp:setProperty name="name" property="*" />
+
+  // javabeans의 정보를 조회
+  <jsp:getProperty name="name" property="p1" />
+
+
+// java 파일
+  // private로 변수 선언한 후 getter setter 메소드 넣는다.

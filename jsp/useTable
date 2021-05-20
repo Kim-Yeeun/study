@@ -1,0 +1,33 @@
+<table width=100% border=2 cellpadding=1>
+		<tr>
+			<td align=center> <b> 아이디 </b> </td>
+			<td align=center> <b> 암호 </b> </td>
+			<td align=center> <b> 이름 </b> </td>
+			<td align=center> <b> 입학년도 </b> </td>
+			<td align=center> <b> 학번 </b> </td>
+			<td align=center> <b> 학과 </b> </td>
+			<td align=center> <b> 휴대폰1 </b> </td>
+			<td align=center> <b> 휴대폰2 </b> </td>
+			<td align=center> <b> 주소 </b> </td>
+			<td align=center> <b> 이메일 </b> </td>
+		</tr>
+    <%
+		while (result.next()) {
+	  %>	
+		<tr>
+			<td align=center> <%= result.getString(1) %> </td>
+			<td align=center> <%= result.getString(2) %> </td>
+			<td align=center> <%= result.getString(3) %> </td>
+			<td align=center> <%= result.getString(4) %> </td>
+			<td align=center> <%= result.getString(5) %> </td>
+			<td align=center> <%= result.getString(6) %> </td>
+			<td align=center> <%= result.getString(7) %> </td>
+			<td align=center> <%= result.getString(8) %> </td>
+			<td align=center> <%= result.getString(9) %> </td>
+			<td align=center> <%= result.getString(10) %> </td>
+		<tr>
+    <%
+      }
+    result.close();
+    }
+</table>

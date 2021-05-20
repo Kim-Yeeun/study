@@ -1,0 +1,11 @@
+
+java -version
+
+vi ~/.bash_profile
+
+# i 눌러 삽입모드로 변경
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home
+
+# esc 누른 후 shift + ; 누르고 wq! 입력해 설정모드에서 나간다.
+

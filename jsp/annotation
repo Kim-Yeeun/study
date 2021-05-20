@@ -1,0 +1,9 @@
+// web.xml 파일에 들어가서 metadata-complete="false" 문장에서 "false"를 "true"로 변경해준다.
+
+// java 파일로 돌아가서
+import javax.servlet.annotation.WebServlet;
+
+// class 함수 바로 위에
+@WebServlet("/hi")
+
+// 톰캣 실행 후 브라우저를 킨 후 "http://localhost:8080/hi" 접속한다.

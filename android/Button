@@ -1,0 +1,36 @@
+
+//
+버튼이 눌리면 해당 텍스트를 출력(잠깐 나왔다 사라짐 - Toast)
+//
+
+public void onButton1Clicked(View v) {
+    Toast.makeText(getApplicationContext(), "버튼이 눌렸어요.", Toast.LENGTH_LONG).show();
+}
+
+//
+버튼이 눌리면 지정된 웹으로 이동
+//
+
+public void onButton2Clicked(View v) {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://m.naver.com"));
+    startActivity(intent);
+}
+
+//
+버튼이 눌리면 새로운 앱페이지로 이동
+//
+
+public void onButton3Clicked(View v) {
+    Intent intent = new Intent(this, MenuActivity.class); // MenuActivity - 새 페이지
+    startActivity(intent);
+}
+
+//
+MenuActivity에서 버튼이 눌리면 그 페이지에서 나감
+//
+
+public void onBackClicked(View v) {
+    finish();
+}
+
+

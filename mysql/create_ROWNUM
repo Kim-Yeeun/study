@@ -1,0 +1,5 @@
+/* 최근 날짜인 게시글 순서대로 ROWNUM 매기는 코드 */
+
+SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, N.*
+FROM NOTICE N, (SELECT @ROWNUM := 0) TMP
+ORDER BY REGDATE ASC;

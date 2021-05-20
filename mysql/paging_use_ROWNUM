@@ -1,0 +1,14 @@
+// 게시글을 최근등록순으로 페이징하여 출력 
+
+SELECT * FROM 
+(
+	SELECT @ROWNUM:=@ROWNUM+1 NUM,
+	N.*
+    FROM NOTICE N,
+    (SELECT @ROWNUM:=0) R
+    WHERE 1=1
+    ORDER BY REGDATE DESC
+) list
+WHERE NUM >= 1 AND NUM <= 10;
+
+// JDBC 연결 위해서는 맨 뒤의 WHERE 절의 NUM 범위를 ? 로 놓고 변수로 대입한다.

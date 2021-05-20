@@ -1,0 +1,16 @@
+
+import heapq
+
+# list가 주어진 경우 힙으로 변환
+list = [1,2,3,4,5]
+heapq.heapify(list)
+
+# list의 최솟값을 제거후 반환
+min = heapq.heappop(list)
+
+# list new 값을 삽입 
+new = 6
+heapq.heappush(list, new)
+
+# 최솟값은 heap[0]으로 표현 가능
+

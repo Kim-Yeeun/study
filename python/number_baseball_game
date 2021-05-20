@@ -1,0 +1,63 @@
+
+import random
+
+def generate_numbers():
+    answer = [0, 0, 0]
+    while answer[0] == answer[1] or answer[1] == answer[2] or answer[2] == answer[0]:
+        for i in range(0, 3):
+            n = random.randint(0, 9)
+            answer[i] = n
+    print("0과 9 사이의 서로 다른 숫자 3개를 랜덤한 순서로 뽑았습니다.")
+    return answer
+
+def take_guess():
+    list = []
+    print("숫자 3개를 하나씩 차례대로 입력하세요.")
+    first = int(input("1번째 숫자를 입력하세요: "))
+    while first < 0 or first > 9:
+        print("범위를 벗어나는 숫자입니다. 다시 입력하세요.")
+        first = int(input("1번째 숫자를 입력하세요: "))
+    list.append(first)
+
+    second = int(input("2번째 숫자를 입력하세요: "))
+    while first == second:
+        print("중복되는 숫자 입니다. 다시 입력하세요.")
+        second = int(input("2번째 숫자를 입력하세요: "))
+    while second < 0 or second > 9:
+        print("범위를 벗어나는 숫자입니다. 다시 입력하세요.")
+        second = int(input("2번째 숫자를 입력하세요: "))
+    list.append(second)
+
+    third = int(input("3번째 숫자를 입력하세요: "))
+    while first == third or second == third:
+        print("중복되는 숫자 입니다. 다시 입력하세요.")
+        third = int(input("3번째 숫자를 입력하세요: "))
+    while third < 0 or third > 9:
+        print("범위를 벗어나는 숫자입니다. 다시 입력하세요.")
+        third = int(input("3번째 숫자를 입력하세요: "))
+    list.append(third)
+
+    return list
+
+def get_score(guesses, solution):
+    b = 0
+    s = 0
+    for i in range(len(guesses)):
+        for j in range(len(solution)):
+            if i == j and guesses[i] == solution[j]:
+                s += 1
+            elif guesses[i] == solution[j]:
+                b += 1
+    return s, b
+
+answer = generate_numbers()
+
+count = 0
+while True:
+    s, b = get_score(answer, take_guess())
+    print(f"{s}S {b}B\n")
+    count += 1
+    if s == 3:
+        break
+
+print(f"축하합니다. {count}번 만에 숫자 3개의 값과 위치를 모두 맞추셨습니다.")

@@ -1,0 +1,21 @@
+# format method
+year = 2021
+month = 5
+day = 3
+
+print("오늘은 {}년 {}월 {}일 입니다.".format(year, month, day))
+date = "오늘은 {}년 {}월 {}일 입니다."
+print(date.format(year, month, day))
+
+print("나는 {1}, {2}, {0}을(를) 좋아한다.".format("사과", "바나나", "멜론"))
+
+print("{0} 나누기 {1}은 {2}입니다.".format(a, b, round(a / b, 3)))
+print("{0} 나누기 {1}은 {2:.2f}입니다.".format(a, b, a / b))
+
+# format string
+name = "김예은"
+age = 23
+print("제 이름은 %s이고 %d살입니다." % (name, age))
+
+# f-string
+print(f"제 이름은 {name}이고 {age}살입니다.")

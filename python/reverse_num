@@ -1,0 +1,26 @@
+import sys
+
+a, b = map(str, sys.stdin.readline().split())
+m = list(a)
+n = list(b)
+msum = ''
+nsum = ''
+
+for i in range(3):
+        m[i] = a[2-i]
+        msum += m[i]
+
+for i in range(3):      
+        n[i] = b[2-i]
+        nsum += n[i]
+
+a = int(msum)
+b = int(nsum)
+
+if a > b:
+        print(a)
+elif a < b:
+        print(b)
+        
+        
+# reverse() 함수를 이용하면 문자열의 순서를 역순으로 정렬할 수 있다.

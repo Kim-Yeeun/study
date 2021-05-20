@@ -1,0 +1,10 @@
+
+with open('../data/vocabulary.txt', 'r') as f:
+
+    eng = []
+    kor = []
+    for line in f:
+        word = line.strip().split(': ')
+        eng.append(word[0])
+        kor.append(word[1])
+        

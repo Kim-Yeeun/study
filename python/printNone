@@ -1,0 +1,8 @@
+
+def print_square(x):
+    print(x * x)
+
+def get_square(x):
+    return x * x
+
+print(print_square(3))

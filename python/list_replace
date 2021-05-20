@@ -1,0 +1,9 @@
+
+# replace 함수는 변경된 문자열을 반환한다.
+
+s = 'aaabbb'
+s_ = s.replace('a', '?')
+
+print(s_)
+
+

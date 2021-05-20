@@ -1,0 +1,16 @@
+  
+# 두개의 list가 주어졌을 때 두 list의 요소를 빼는 코드
+# a = [1,2,3,4], b = [1,2,3]
+# a - b = [4]
+
+i = 0
+    while len(participant) > 1:
+        for j in range(len(completion)):
+            if participant[i] == completion[j]:
+                del participant[i]
+                del completion[j]
+                i -= 1
+                break
+            else:
+                continue
+        i += 1

@@ -1,0 +1,11 @@
+
+dict = {}
+with open('textname.txt', 'r') as f:
+  for line in f:
+  word = line strip().split()
+  first = word[0]
+  second = word[1]
+  vocab[first] = second
+  one = list(dict.keys())
+  two = list(dict.values())
+  

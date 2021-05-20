@@ -1,0 +1,22 @@
+import sys
+
+c = int(input())
+
+score = []
+for i in range(c):
+    score = list(map(int, sys.stdin.readline().split()))
+    n = score[0] 
+
+    sum = 0
+    for j in range(1,len(score)):
+        sum += score[j]
+
+    avg = sum / n
+
+    snum = 0
+    for k in range(1,len(score)):
+        if score[k] > avg:
+            snum += 1
+    result = snum / n * 100
+    print("{:.3f}%".format(round(result,3))) # 반올림하여 소수점 셋째 자리까지 표현
+    del score[:] # 배열 초기화

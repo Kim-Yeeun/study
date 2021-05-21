@@ -10,9 +10,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+	pageContext.setAttribute("result", "hello");
+%>
 <body>
   <!-- "result" 이름으로 저장된 값을 가져온다. --!>
-	<%= request.getAttribute("result") %> 입니다.
+	<%= request.getAttribute("result") %> 입니다.<br>
+	${requestScope.result} 입니다.
+	<!-- list 정보 출력 --!>
+	${names[1]}<br>
+	<!-- map 정보 출력 --!>
+	${notice.title}<br>
+	${result}<br>
+	<!-- 전달받은 n값 출력 --!>
+	${param.n}<br>
+	<!-- 실행 호스트 출력 --!>
+	${header.host}<br>
+	<!-- 요청방식 출력 --!>
+	${pageContext.request.method}
 </body>
 </html>
 

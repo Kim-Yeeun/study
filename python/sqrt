@@ -1,0 +1,11 @@
+
+import math
+
+n = 25
+
+# 함수 사용
+print(math.sqrt(n))
+# 연산 사용 
+print(n ** 0.5)
+
+

@@ -3,6 +3,11 @@
 <!-- view 단에서 코드블럭으로 이루어진 for문을 tag로 코드블럭이 제거된 상태로 이용할 수 있다. --!>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- 임시변수를 위한 태그 --!>
+<c:set var="page" value="${ (param.p == null)?1:param.p }"/>
+<c:set var="startNum" value="${ page-(page-1)%5 }"/>
+
+<!-- 반복문을 위한 태그 --!>
 <c:forEach var="n" items="${ list }">
 					<tr>
 						<td>${ n.id }</td>

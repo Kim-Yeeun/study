@@ -1,0 +1,9 @@
+
+-- 게시글을 등록할 때 현재 시간을 저장할 컬럼 NOWDATE
+-- 데이터타입을 datetime 으로 설정
+-- default 값은 CURRENT_TIMESTAMP 로 설정
+
+-- Service 클래스에서 NOWDATE 값 받아올 때 Timestamp 타입으로 선언
+Timestamp nowDate = rs.getTimestamp("NOWDATE");
+
+

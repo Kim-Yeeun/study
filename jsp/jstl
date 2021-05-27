@@ -27,4 +27,7 @@
 </c:if>
 </c:forTokens></td>
 
-
+<!-- format 태그 이용하여 서식 지정하기 --!>
+<fmt:formatDate pattern="yyyy-MM-dd" value="${ n.regDate }"/>
+<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ n.regDate }"/>
+<fmt:formatNumber type="number" pattern="##,####" value="${ n.hit }"/>

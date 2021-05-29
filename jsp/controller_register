@@ -1,5 +1,36 @@
 
 // 공지사항 등록을 할 경우 Controller 에서 하는 일
-// [글쓰기] 버튼을 눌렀을 때 GET 요청으로 글쓰기 양식 페이지로 이동한다.
-// [작성 완료] 버튼을 눌렀을 때 POST 요청으로 그 결과들을 저장한다.
 
+// [글쓰기] 버튼을 눌렀을 때 GET 요청으로 글쓰기 양식 페이지로 이동한다.
+protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		// 페이지 이동
+    req.getRequestDispatcher("/WEB-INF/view/admin/board/notice/reg.jsp").forward(req, res);
+}
+
+// [작성 완료] 버튼을 눌렀을 때 POST 요청으로 그 결과들을 저장한다.
+protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		// 저장된 정보를 가져온다.
+    String title = req.getParameter("title");
+		String content = req.getParameter("content");
+		String isOpen = req.getParameter("open");
+		boolean pub = false;
+		
+    // 체크박스(공개여부) 체크하지 않으면 null 상태가 된다. (기본 false 상태)
+		if (isOpen != null)
+			pub = true;
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setPub(pub);
+		notice.setWriterId("kim");
+		
+		NoticeService service = new NoticeService();
+		service.insertNotice(notice);
+
+		// 새로운 페이지(컨트롤러)를 요청한다.
+		res.sendRedirect("list");
+	}
+  
+  
+  

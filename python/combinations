@@ -1,0 +1,19 @@
+
+# 리스트의 조합 구하여 'a' 조합의 빈도수 구하기
+
+from itertools import combinations
+
+n = int(input())
+a = input().split(' ')
+k = int(input())
+
+total = 0
+count = 0
+for i in combinations(a, k):
+    total += 1
+    if 'a' in i:
+        count += 1
+        
+print(count/total)
+
+

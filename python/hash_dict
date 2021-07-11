@@ -24,3 +24,19 @@ for i in a:
     else:
         c.append(i)
     
+# *****
+if __name__ == '__main__':
+    dict = {}
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        dict[name] = score
+    scores = dict.values()
+    second = sorted(list(set(scores)))[1]
+    second_list = []
+    for key, value in dict.items():
+        if second == value:
+            second_list.append(key)
+    second_list.sort()
+    for i in range(len(second_list)):
+        print(second_list[i])

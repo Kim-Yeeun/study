@@ -1,0 +1,8 @@
+
+# -----HELLO----- 
+
+len = 15
+print(('HELLO").center(len, '-')
+
+
+

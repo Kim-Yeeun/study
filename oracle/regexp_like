@@ -1,0 +1,8 @@
+
+--공지사항 중 전화번호가 쓰여진 게시글 찾기
+SELECT * FROM NOTICE WHERE REGEXP_LIKE(CONTENT, '01[016-9]-\d{3,4}-\d{4}');
+
+--공지사항 중 이메일이 쓰여진 게시글 찾기
+SELECT * FROM NOTICE WHERE REGEXP_LIKE(CONTENT, '\D\w*@\D\w*.(com|net)');
+
+

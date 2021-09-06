@@ -1,0 +1,10 @@
+
+--union 쿼리에서 '문자 집합이 일치하지 않습니다.' 라는 오류가 뜰 때
+
+SELECT UNISTR(NAME), UNISTR(ID) FROM MEMBER
+UNION   
+SELECT WRITER_ID, TITLE FROM NOTICE;
+
+
+
+

@@ -1,0 +1,10 @@
+
+--게시글을 올린 회원의 아이디, 이름, 게시글 수
+
+SELECT M.ID, M.NAME, COUNT(N.NO)
+FROM MEMBER M INNER JOIN NOTICE N
+ON M.ID = N.WRITER_ID
+GROUP BY M.ID, M.NAME;
+
+
+

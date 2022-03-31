@@ -1,0 +1,16 @@
+
+#----------------------------------------------------------------------------------------------------------
+# INS 테이블을 OUTS 테이블에 합쳐 들어온 시간이 없는 데이터를 추출
+# OUTS 테이블은 모든 데이터를 가지고 있는 상태
+# INS 테이블은 일부 데이터가 사라진 상태
+
+SELECT
+    T1.ANIMAL_ID,
+    T1.NAME
+FROM ANIMAL_OUTS T1 
+    LEFT OUTER JOIN ANIMAL_INS T2
+    ON T1.ANIMAL_ID = T2.ANIMAL_ID 
+WHERE T2.DATETIME IS NULL 
+ORDER BY ANIMAL_ID
+
+

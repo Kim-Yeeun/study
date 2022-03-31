@@ -1,0 +1,12 @@
+
+#------------------------------------------------------------------------------------------------
+# 년월일시분초로 이루어진 DATETIME을 DATE만 나오게 하기
+
+SELECT 
+    ANIMAL_ID, 
+    NAME, 
+    TO_CHAR(DATETIME, 'YYYY-MM-DD')
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID
+
+

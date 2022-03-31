@@ -1,0 +1,11 @@
+
+#---------------------------------------------------------------------------------------------------------
+# DATETIME 에서 특정 항목을 뽑아오기
+
+SELECT EXTRACT(HOUR FROM DATETIME) AS HOUR, COUNT(DATETIME) AS COUNT
+FROM ANIMAL_OUTS
+WHERE EXTRACT(HOUR FROM DATETIME) >= 9 AND EXTRACT(HOUR FROM DATETIME) <= 19
+GROUP BY HOUR
+ORDER BY HOUR
+
+
